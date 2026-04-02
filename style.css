@@ -48,21 +48,20 @@ body::before {
 .site-header {
   position: relative;
   z-index: 10;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 6px 20px 5px;
   background: linear-gradient(135deg, #041226 0%, #0a2652 50%, #041226 100%);
   border-bottom: 2px solid var(--accent);
   box-shadow: 0 0 30px rgba(0,229,255,.15);
-  gap: 12px;
 }
-.header-brand { display: flex; align-items: center; gap: 8px; min-width: 150px; }
+.header-brand { display: flex; align-items: center; gap: 8px; justify-content: flex-start; }
 .scissors-icon { font-size: 1.6rem; color: var(--accent); filter: drop-shadow(0 0 6px var(--accent)); }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-name { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: .12em; color: var(--accent); }
 .brand-sub  { font-size: .62rem; letter-spacing: .3em; color: var(--muted); text-transform: uppercase; }
-.header-center { text-align: center; flex: 1; }
+.header-center { text-align: center; }
 .tournament-title {
   font-family: var(--font-display);
   font-size: 2rem;
@@ -72,10 +71,10 @@ body::before {
   line-height: 1;
 }
 .tournament-sub { font-size: .7rem; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; }
-.header-info { display: flex; gap: 14px; min-width: 180px; justify-content: flex-end; flex-wrap: wrap; }
+.header-info { display: flex; gap: 14px; justify-content: flex-end; flex-wrap: wrap; }
 .info-item { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.1; }
-.info-label { font-size: .55rem; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; }
-.info-value { font-size: .75rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
+.info-label { font-size: .85rem; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; }
+.info-value { font-size: 1.05rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
 
 .prizes-strip {
   position: relative;
@@ -88,7 +87,7 @@ body::before {
   background: linear-gradient(90deg, rgba(5,24,50,.9) 0%, rgba(21,101,192,.15) 50%, rgba(5,24,50,.9) 100%);
   border-bottom: 1px solid rgba(0,229,255,.2);
 }
-.prize-item { display: flex; align-items: center; gap: 6px; font-size: .72rem; }
+.prize-item { display: flex; align-items: center; gap: 6px; font-size: 1.05rem; }
 .prize-item.gold .prize-medal   { filter: drop-shadow(0 0 4px var(--gold)); }
 .prize-item.silver .prize-medal { filter: drop-shadow(0 0 4px var(--silver)); }
 .prize-text { color: var(--white); }
@@ -138,7 +137,7 @@ body::before {
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-display);
-  font-size: .72rem;
+  font-size: .82rem;
   letter-spacing: .2em;
   color: var(--muted);
   white-space: nowrap;
@@ -188,7 +187,7 @@ body::before {
 .player-card.tbd { opacity: .35; cursor: default; border-style: dashed; }
 .player-card.tbd::before { opacity: 0; }
 .player-num  { font-family: var(--font-display); font-size: .78rem; color: var(--muted); min-width: 16px; text-align: center; line-height: 1; }
-.player-name { font-weight: 600; font-size: .82rem; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; color: var(--white); }
+.player-name { font-weight: 600; font-size: 1.02rem; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; color: var(--white); }
 .player-card.winner     .player-name { color: var(--win-text); }
 .player-card.eliminated .player-name { color: var(--elim-text); text-decoration: line-through; }
 .player-card.champion   .player-name { color: var(--gold); }
@@ -240,11 +239,17 @@ body::before {
 
   html, body { height: auto; overflow: auto; }
 
-  .site-header { flex-direction: column; align-items: center; padding: 10px 14px 8px; gap: 6px; }
-  .header-brand { min-width: unset; }
+  .site-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px 8px;
+    gap: 6px;
+  }
+  .header-brand { min-width: unset; justify-content: center; }
   .header-center { width: 100%; }
   .tournament-title { font-size: 1.6rem; }
-  .header-info { width: 100%; justify-content: center; gap: 10px; min-width: unset; }
+  .header-info { width: 100%; justify-content: center; gap: 10px; }
   .info-item { align-items: center; }
   .prizes-strip { flex-direction: column; gap: 5px; padding: 7px 14px; }
   .prize-divider { display: none; }
