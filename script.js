@@ -1,21 +1,21 @@
 const PLAYERS = [
-  "Jogador 1",  "Jogador 2",
-  "Jogador 3",  "Jogador 4",
-  "Jogador 5",  "Jogador 6",
-  "Jogador 7",  "Jogador 8",
-  "Jogador 9",  "Jogador 10",
-  "Jogador 11", "Jogador 12",
-  "Jogador 13", "Jogador 14",
-  "Jogador 15", "Jogador 16",
+  "Levi",  "Paraíso",
+  "DVD",  "Pedro",
+  "PL",  "Iagão",
+  "NOG",  "Daniel",
+  "JM",  "Gabriel",
+  "Cauã", "Kerlin",
+  "Kayki", "NK",
+  "Luan", "Brenin",
   
-  "Jogador 17", "Jogador 18",
-  "Jogador 19", "Jogador 20",
-  "Jogador 21", "Jogador 22",
-  "Jogador 23", "Jogador 24",
-  "Jogador 25", "Jogador 26",
-  "Jogador 27", "Jogador 28",
-  "Jogador 29", "Jogador 30",
-  "Jogador 31", "Jogador 32",
+  "RN",  "Mateus",
+  "Renan", "Daniel",
+  "Heitor", "Maguila",
+  "Cassiano", "Marcus",
+  "Luiz", "Jair",
+  "Kayo", "Gabryel",
+  "Fael", "KN",
+  "Caxumba", "Tidor",
 ];
 
 let state = {
@@ -45,7 +45,42 @@ function syncFinal() {
   state.final.p2 = state.right[3][0].winner || null;
 }
 
-function handleWin(playerName, side, round, matchIdx) {
+const API = "http://localhost:3000";
+
+async function saveResult(entry) {
+  try {
+    await fetch(`${API}/results`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(entry),
+    });
+  } catch (e) {
+    console.warn("Não foi possível salvar resultado:", e);
+  }
+}
+
+async function loadResults() {
+  try {
+    const res  = await fetch(`${API}/results`);
+    const text = await res.text();
+    const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
+
+    for (const line of lines) {
+      try {
+        const entry = JSON.parse(line);
+        if (entry.final) {
+          applyFinalWin(entry.winner);
+        } else {
+          applyWin(entry.winner, entry.side, entry.round, entry.matchIdx);
+        }
+      } catch (_) {}
+    }
+  } catch (e) {
+    console.warn("Não foi possível carregar resultados:", e);
+  }
+}
+
+function applyWin(playerName, side, round, matchIdx) {
   state[side][round][matchIdx].winner = playerName;
   const nextRound = round + 1;
   if (nextRound <= 3) {
@@ -55,8 +90,19 @@ function handleWin(playerName, side, round, matchIdx) {
   }
 }
 
+function applyFinalWin(playerName) {
+  syncFinal();
+  state.final.winner = playerName;
+}
+
+function handleWin(playerName, side, round, matchIdx) {
+  applyWin(playerName, side, round, matchIdx);
+  saveResult({ side, round, matchIdx, winner: playerName });
+}
+
 function handleFinalWin(playerName) {
   state.final.winner = playerName;
+  saveResult({ final: true, winner: playerName });
   setTimeout(() => showWinner(playerName), 300);
 }
 
@@ -461,7 +507,11 @@ function fullRender() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", fullRender);
+window.addEventListener("DOMContentLoaded", async () => {
+  await loadResults();
+  fullRender();
+});
+
 window.addEventListener("resize", () => {
   adjustLayout();
   if (isMobile()) {
