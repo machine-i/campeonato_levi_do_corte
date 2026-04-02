@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campeonato FIFA – Levi do Corte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-brand">
+      <div class="scissors-icon">✂</div>
+      <div class="brand-text">
+        <span class="brand-name">LEVI DO CORTE</span>
+        <span class="brand-sub">BARBEARIA</span>
+      </div>
+    </div>
+    <div class="header-center">
+      <h1 class="tournament-title">CAMPEONATO FIFA</h1>
+      <p class="tournament-sub">Torneio Eliminatório · 32 Jogadores</p>
+    </div>
+    <div class="header-info">
+      <div class="info-item">
+        <span class="info-label">DATA</span>
+        <span class="info-value">12/04/2026</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">HORÁRIO</span>
+        <span class="info-value">12h30</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">LOCAL</span>
+        <span class="info-value">Rua Itaperuna, 196 – Parque Guarus</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="prizes-strip">
+    <div class="prize-item gold">
+      <span class="prize-medal">🥇</span>
+      <span class="prize-text"><strong>1º Lugar:</strong> 1 Nevou <em>ou</em> 3 Cortes com Pigmentação Preta</span>
+    </div>
+    <div class="prize-divider"></div>
+    <div class="prize-item silver">
+      <span class="prize-medal">🥈</span>
+      <span class="prize-text"><strong>2º Lugar:</strong> 1 Corte de Cabelo Grátis</span>
+    </div>
+  </div>
+
+  <main class="bracket-wrapper">
+    <div class="bracket" id="bracket"></div>
+  </main>
+
+  <div class="modal-overlay" id="winnerModal">
+    <div class="modal-box">
+      <div class="modal-trophy">🏆</div>
+      <h2 class="modal-title">CAMPEÃO!</h2>
+      <p class="modal-name" id="winnerName">—</p>
+      <div class="modal-prize">
+        <p class="modal-prize-label">Escolha seu prêmio:</p>
+        <div class="prize-choices">
+          <div class="prize-choice">🍦 1 Nevou</div>
+          <div class="prize-choice">✂ 3 Cortes com<br>Pigmentação Preta</div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">FECHAR</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
