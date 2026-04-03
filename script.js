@@ -15,7 +15,7 @@ const PLAYERS = [
   "Luiz", "Jair",
   "Kayo", "Gabryel",
   "Fael", "KN",
-  "Caxumba", "",
+  "Caxumba", "WN",
 ];
 
 let state = {
