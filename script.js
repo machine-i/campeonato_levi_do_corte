@@ -1,8 +1,8 @@
 const PLAYERS = [
   "Levi",  "Paraíso",
-  "DVD",  "Pedro",
+  "DVD",  "Tidor",
   "PL",  "Iagão",
-  "NOG",  "Daniel",
+  "NOG",  "Nariz",
   "JM",  "Gabriel",
   "Cauã", "Kerlin",
   "Kayki", "NK",
@@ -15,7 +15,7 @@ const PLAYERS = [
   "Luiz", "Jair",
   "Kayo", "Gabryel",
   "Fael", "KN",
-  "Caxumba", "Tidor",
+  "Caxumba", "",
 ];
 
 let state = {
