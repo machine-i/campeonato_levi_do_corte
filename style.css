@@ -119,7 +119,8 @@ body::before {
   align-items: center;
   flex: 1;
   position: relative;
-  padding: 2px 1px;
+  padding: 22px 1px 4px;
+  gap: 4px;
 }
 
 .connectors-svg {
